@@ -26,6 +26,7 @@ class App extends Component {
     return (
     <p className="custom-view-element">
       jet-test-react works!<br/>
+      foo: {this.props.foo}<br/>
       current user: {this.state.user}
     </p>
     );

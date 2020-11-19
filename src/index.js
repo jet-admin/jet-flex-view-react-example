@@ -5,8 +5,23 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 class JetTestReact extends HTMLElement {
+  static get observedAttributes() {
+    return ['foo'];
+  }
+
+  createElement(foo) {
+    return React.createElement(App, { foo: foo }, React.createElement('slot'));
+  }
+
   connectedCallback() {
-    ReactDOM.render(<App />, this);
+    const foo = this.getAttribute('foo');
+    ReactDOM.render(this.createElement(foo), this);
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'foo') {
+      ReactDOM.render(this.createElement(newValue), this);
+    }
   }
 }
 
