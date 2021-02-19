@@ -10,7 +10,7 @@ class JetTestReact extends HTMLElement {
   }
 
   createElement(foo) {
-    return React.createElement(App, { foo: foo }, React.createElement('slot'));
+    return React.createElement(App, { foo: foo, dispatchEvent: this.dispatchEvent.bind(this) }, React.createElement('slot'));
   }
 
   connectedCallback() {

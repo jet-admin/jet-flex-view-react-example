@@ -20,6 +20,21 @@ class App extends Component {
     getPublicApiService().currentUserStore.get().subscribe(result => {
       self.setState({ user: result ? result.username : 'unknown' });
     });
+
+    let i = 1;
+    this.setElementOutput(0);
+
+    setInterval(() => {
+      this.setElementOutput(i);
+      ++i;
+    }, 3000);
+  }
+
+  setElementOutput(value) {
+    const event = new CustomEvent('testEvent', {
+      detail: value
+    });
+    this.props.dispatchEvent(event);
   }
 
   render() {
