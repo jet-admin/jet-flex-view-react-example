@@ -18,6 +18,10 @@ class JetTestReact extends HTMLElement {
     ReactDOM.render(this.createElement(foo), this);
   }
 
+  disconnectedCallback() {
+    ReactDOM.unmountComponentAtNode(this);
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'foo') {
       ReactDOM.render(this.createElement(newValue), this);
